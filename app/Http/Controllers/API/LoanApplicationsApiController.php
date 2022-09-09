@@ -163,12 +163,14 @@ class LoanApplicationsApiController extends BaseController
         $rate = 9.25; // 9.25 as Rate of interest per annum
         $time = request()->time_yearly; // 1 years as Repayment period
         $monthly=12*$time;
+        $date = date("Y-m-05");
 
         for($i=1;$i<=$monthly;$i++){
             $loan_payment_duedate = date("Y-m-d", strtotime("+$i month", strtotime($date)));
             $emi=$this->emiCalculator($principal, $rate, $time);
             $emiTrans = new LoanEmiTransaction();
             $emiTrans->emi_amount = $emi;
+            $emiTrans->loan_payment_duedate = $loan_payment_duedate;
             $emiTrans->created_by_id = auth()->user()->id;
             $emiTrans->status_id = 1;
             $emiTrans->loan_application_id = request()->id;
@@ -184,7 +186,6 @@ class LoanApplicationsApiController extends BaseController
     {
 
         $monthlyemi=LoanEmiTransaction::where('loan_application_id',request()->loan_application_id)->get();
-
 
        return new LoanApplicationResource($monthlyemi);
     }

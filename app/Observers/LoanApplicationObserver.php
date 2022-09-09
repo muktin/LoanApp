@@ -47,7 +47,7 @@ class LoanApplicationObserver
      * @return void
      */
     public function updated(LoanApplication $loanApplication)
-    {dd('rrrrrrrrrrrr');
+    {
         if ($loanApplication->isDirty('status_id')) {
             if (in_array($loanApplication->status_id, [2, 5])) {
                 if ($loanApplication->status_id == 2) {
