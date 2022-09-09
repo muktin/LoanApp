@@ -33,4 +33,6 @@ Route::middleware('auth:api')->group( function () {
     Route::post('loan-applications/destroy', 'App\Http\Controllers\API\LoanApplicationsApiController@destroy');
     Route::post('loan-applications/emiTransaction', 'App\Http\Controllers\API\LoanApplicationsApiController@emiTransaction');
     Route::post('loan-applications/getEmiTransaction', 'App\Http\Controllers\API\LoanApplicationsApiController@getEmiTransaction');
+    Route::post('loan-applications/send', 'App\Http\Controllers\API\LoanApplicationsApiController@send');
+    Route::post('loan-applications/showAnalyze', 'App\Http\Controllers\API\LoanApplicationsApiController@showAnalyze');
 });
