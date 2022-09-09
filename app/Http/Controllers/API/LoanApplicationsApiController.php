@@ -177,9 +177,8 @@ class LoanApplicationsApiController extends BaseController
             $emiTrans->save();
         }
 
-        $monthlyemi=LoanEmiTransaction::where('loan_application_id',request()->id)->get();
 
-        return response(null, Response::HTTP_NO_CONTENT);
+        return response(Response::HTTP_NO_CONTENT);
     }
 
     public function getEmiTransaction(Request $request)
@@ -300,14 +299,6 @@ class LoanApplicationsApiController extends BaseController
         file_put_contents($destinationPath2, $output);
         
         return $destinationPath2;
-
-        // Output the generated PDF to Browser - show on browser scree
-        //$dompdf->stream();
-
-
-      /* $data = ['title' => 'Welcome to ItSolutionStuff.com'];
-       $pdf = PDF::loadView('myPDF', $data);
-       return $pdf->download('itsolutionstuff.pdf'); */
     }
 
 }
